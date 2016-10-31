@@ -36,7 +36,7 @@ namespace WindowsFormsApplication3
 
         private void Add(object sender, EventArgs e)
         {
-            panel1.BackColor = Color.Aqua;
+            //panel1.BackColor = Color.Aqua;
             GraphObject r = new GraphObject();
             elements.Add(r);
             panel1.Invalidate();
@@ -44,7 +44,7 @@ namespace WindowsFormsApplication3
 
         private void Delete(object sender, EventArgs e)
         {
-            panel1.BackColor = this.BackColor;
+            //panel1.BackColor = this.BackColor;
             elements.RemoveAt(elements.Count - 1);
             panel1.Invalidate();
         }
@@ -57,5 +57,15 @@ namespace WindowsFormsApplication3
             }
 
             }
+
+        private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
+
+        private void Clear(object sender, EventArgs e)
+        {
+            
+        }
+    }
 }
