@@ -13,6 +13,7 @@ namespace WindowsFormsApplication3
 {
     public partial class MainForm : Form
     {
+        List<GraphObject> elements = new List<GraphObject>();
         public MainForm()
         {
             InitializeComponent();
@@ -36,16 +37,25 @@ namespace WindowsFormsApplication3
         private void Add(object sender, EventArgs e)
         {
             panel1.BackColor = Color.Aqua;
+            GraphObject r = new GraphObject();
+            elements.Add(r);
+            panel1.Invalidate();
         }
 
         private void Delete(object sender, EventArgs e)
         {
             panel1.BackColor = this.BackColor;
+            elements.RemoveAt(elements.Count - 1);
+            panel1.Invalidate();
         }
 
         private void p(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Green, 0, 0, 200, 200);
+            foreach(GraphObject r in elements)
+            { 
+               r.Draw(e.Graphics);
+            }
+
+            }
         }
-    }
 }

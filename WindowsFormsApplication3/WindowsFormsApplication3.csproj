@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraphObject.cs" />
     <Compile Include="mainform.cs">
       <SubType>Form</SubType>
     </Compile>
