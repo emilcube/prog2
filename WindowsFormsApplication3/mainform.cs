@@ -52,12 +52,12 @@ namespace WindowsFormsApplication3
 
         private void p(object sender, PaintEventArgs e)
         {
-            foreach(GraphObject r in elements)
-            { 
-               r.Draw(e.Graphics);
+            foreach (GraphObject r in elements)
+            {
+                r.Draw(e.Graphics);
             }
 
-            }
+        }
 
         private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -73,23 +73,25 @@ namespace WindowsFormsApplication3
 
         private void MouseDoubleClick11(object sender, EventArgs e)
         {
-            
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
 
         }
 
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            GraphObject r = new GraphObject();
-            r.X = e.X;
-            r.Y = e.Y;
-            elements.Add(r);
-            panel1.Invalidate();
 
-            status.Texe
-        }
+        {
+            try
+            {
+                GraphObject r = new GraphObject();
+                r.X = e.X;
+                r.Y = e.Y;
+                elements.Add(r);
+                panel1.Refresh();
+                label.Text = "New Rectangle!";
+            }
+            catch (ArgumentException ex)
+            {
+               label.Text = ex.Message;
+            }
+        } 
     }
 }

@@ -16,7 +16,7 @@ namespace WindowsFormsApplication3
             get { return x; }
             set
             {
-                if (value > MaxCoords.Width) { throw new ArgumentException("Big x"); }
+                if (value > MaxCoords.Width-w) { throw new ArgumentException("Big x"); }
                 x = value;
             }
         }
@@ -26,7 +26,7 @@ namespace WindowsFormsApplication3
             get { return y; }
             set
             {
-                if (value > MaxCoords.Width) { throw new ArgumentException("big y"); }
+                if (value > MaxCoords.Height-h) { throw new ArgumentException("Big y"); }
                 y = value;
             }
         }
