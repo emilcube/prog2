@@ -17,6 +17,7 @@ namespace WindowsFormsApplication3
         public MainForm()
         {
             InitializeComponent();
+            GraphObject.MaxCoords = panel1.ClientSize;
         }
 
         private void Mainform_Load(object sender, EventArgs e)
@@ -65,7 +66,30 @@ namespace WindowsFormsApplication3
 
         private void Clear(object sender, EventArgs e)
         {
+            elements.Clear();
+            panel1.Invalidate();
+        }
+
+
+        private void MouseDoubleClick11(object sender, EventArgs e)
+        {
             
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            GraphObject r = new GraphObject();
+            r.X = e.X;
+            r.Y = e.Y;
+            elements.Add(r);
+            panel1.Invalidate();
+
+            status.Texe
         }
     }
 }
