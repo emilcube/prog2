@@ -81,6 +81,7 @@ namespace WindowsFormsApplication3
         {
             try
             {
+                //
                 GraphObject r = new GraphObject();
                 r.X = e.X;
                 r.Y = e.Y;
