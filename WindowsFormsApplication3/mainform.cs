@@ -322,6 +322,6 @@ namespace WindowsFormsApplication3
             panel1.Invalidate();
         }
 
-
+      
     }
 }
