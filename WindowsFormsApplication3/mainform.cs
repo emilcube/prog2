@@ -93,6 +93,11 @@ namespace WindowsFormsApplication3
             {
                label.Text = ex.Message;
             }
-        } 
+        }
+
+        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
