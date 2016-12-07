@@ -13,7 +13,13 @@ namespace WindowsFormsApplication3
 {
     public partial class MainForm : Form
     {
-        List<GraphObject> elements = new List<GraphObject>();
+        private List<GraphObject> elements = new List<GraphObject>();
+        bool dragging;
+        int dx = 0, dy = 0;
+        bool elli;
+        int chElli;
+        Random rand = new Random();
+
         public MainForm()
         {
             InitializeComponent();
