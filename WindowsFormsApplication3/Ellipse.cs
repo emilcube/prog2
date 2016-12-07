@@ -12,6 +12,9 @@ namespace WindowsFormsApplication3
         public Ellipse(int x0, int y0) : base(x0, y0) { }
         public Ellipse() : base() { }
 
+        public override int Who()
+        { return 0; }
+
         public override void Draw(Graphics g)
         {
             g.FillEllipse(brush, x, y, w, h);

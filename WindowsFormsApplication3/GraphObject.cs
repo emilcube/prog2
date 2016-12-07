@@ -10,7 +10,7 @@ namespace WindowsFormsApplication3
         protected int w, h;
         protected Brush brush;
         protected Random rand = new Random();
-
+ 
         public GraphObject(int x, int y)
         {
             Color[] cols = { Color.Blue, Color.Green, Color.Yellow, Color.Tomato, Color.Cyan };
@@ -20,6 +20,7 @@ namespace WindowsFormsApplication3
             w = 40;
             h = 40;
             brush = new SolidBrush(c);
+
         }
 
 
@@ -27,11 +28,12 @@ namespace WindowsFormsApplication3
         {
             Color[] cols = { Color.Blue, Color.Green, Color.Yellow, Color.Tomato, Color.Cyan };
             c = cols[rand.Next(cols.Length)];
-            x = rand.Next(w / 2, MaxCoords.Width - w / 2);
-            y = rand.Next(h / 2, MaxCoords.Height - h / 2);
+            x = rand.Next(w, MaxCoords.Width - w);
+            y = rand.Next(h, MaxCoords.Height - h);
             w = 40;
             h = 40;
             brush = new SolidBrush(c);
+
         }
 
         public static Size MaxCoords { get; set; }
@@ -43,7 +45,7 @@ namespace WindowsFormsApplication3
             get { return x; }
             set
             {
-                if (value > MaxCoords.Width-w/2) { throw new ArgumentException("Big x"); }
+                if (value > 350 - w) { throw new ArgumentException("Big x"); }
                 x = value;
             }
         }
@@ -53,7 +55,7 @@ namespace WindowsFormsApplication3
             get { return y; }
             set
             {
-                if (value > MaxCoords.Height - h / 2) { throw new ArgumentException("Big y"); }
+                if (value > 250 - h) { throw new ArgumentException("Big y"); }
                 y = value;
             }
         }
@@ -63,5 +65,8 @@ namespace WindowsFormsApplication3
         abstract public bool containPoint(Point p);
 
         public bool Selected { get; set; }
+
+        abstract public int Who();
+
     }
 }

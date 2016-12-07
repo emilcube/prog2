@@ -12,6 +12,9 @@ namespace WindowsFormsApplication3
         public Rectangle(int x0, int y0) : base(x0, y0) { }
         public Rectangle() : base() { }
 
+        public override int Who()
+        { return 1; }
+
         public override void Draw(Graphics g)
         {
             g.FillRectangle(brush, x, y, w, h);

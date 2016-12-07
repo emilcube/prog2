@@ -50,8 +50,14 @@ namespace WindowsFormsApplication3
             chElli = rand.Next(10);
             if (chElli < 5) elli = true;
             else elli = false;
-            if (elli) elements.Add(new Ellipse());//elements.Add(new Ellipse(rand.Next(panel1.Width), rand.Next(panel1.Height)));
-            else elements.Add(new Rectangle());//elements.Add(new Rectangle(rand.Next(panel1.Width), rand.Next(panel1.Height)));
+            if (elli)
+            {
+                elements.Add(new Ellipse());//elements.Add(new Ellipse(rand.Next(panel1.Width), rand.Next(panel1.Height)));
+            }
+            else
+            {
+                elements.Add(new Rectangle());//elements.Add(new Rectangle(rand.Next(panel1.Width), rand.Next(panel1.Height)));
+            }
             label.Text = String.Format("создан {0} объект", elements.Count);
             panel1.Invalidate();
 
@@ -160,45 +166,50 @@ namespace WindowsFormsApplication3
     r.containPoint(e.Location);
     if (r.Selected) { dragging = true; dx = e.Location.X - e.Location.X; dy = e.Location.Y - e.Location.Y; }
 }*/
-
-            int v = -1;
-
-            for (int i = 0; i < elements.Count; i++)
+            try
             {
-                if (elements[i].containPoint(e.Location)) v = i;
+                int v = -1;
+
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    if (elements[i].containPoint(e.Location)) v = i;
+                }
+                for (int i = 0; i < elements.Count; i++)
+                {
+                    elements[i].Selected = (i == v);
+                }
+
+                if (v != -1)
+                {
+                    dragging = true;
+
+                    int x = e.X;
+                    int y = e.Y;
+                    /*
+                                    bool i = true;
+                                    bool j = true;
+
+                                    while (i)
+                                    {
+                                        dx = x - 50;
+                                        x = x - 50;
+                                        if (dx <= 50) { i = false; }
+                                    }
+                                    while (j)
+                                    {
+                                        dy = y - 50;
+                                        y = y - 50;
+                                        if (dy <= 50) { j = false; }
+                                    }
+                                    */
+                    dx = e.X - elements[v].X; dy = e.Y - elements[v].Y;
+                    panel1.Invalidate(); return;
+                }
             }
-            for (int i = 0; i < elements.Count; i++)
+            catch (ArgumentException ex)
             {
-                elements[i].Selected = (i == v);
+                label.Text = ex.Message;
             }
-
-            if (v != -1)
-            {
-                dragging = true;
-
-                int x = e.X;
-                int y = e.Y;
-                /*
-                                bool i = true;
-                                bool j = true;
-
-                                while (i)
-                                {
-                                    dx = x - 50;
-                                    x = x - 50;
-                                    if (dx <= 50) { i = false; }
-                                }
-                                while (j)
-                                {
-                                    dy = y - 50;
-                                    y = y - 50;
-                                    if (dy <= 50) { j = false; }
-                                }
-                                */
-                dx = e.X - elements[v].X; dy = e.Y - elements[v].Y;
-                panel1.Invalidate(); return;
-            }
-
             panel1.Invalidate();
         }
 
@@ -276,8 +287,6 @@ namespace WindowsFormsApplication3
 
                 label.Text = ex.Message;
             }
-            
-
             panel1.Invalidate();
         }
 
@@ -287,6 +296,31 @@ namespace WindowsFormsApplication3
 
         }
 
+        private void Transform(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (GraphObject r in elements)
+                {
+                   if (r.Selected)
+                    {
+                        int k = r.Who();
+                        RemoveSelected(sender,e); 
+                       if (k==0)                     
+                       elements.Add(new Rectangle(r.X, r.Y));
+                       else
+                       elements.Add(new Ellipse(r.X, r.Y));
+                    }
+                }
+                label.Text = String.Format("выбранный объект трансформирован");
+            }
+            catch (Exception ex)
+            {
+
+                label.Text = ex.Message;
+            }
+            panel1.Invalidate();
+        }
 
 
     }
