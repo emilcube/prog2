@@ -43,17 +43,36 @@ namespace WindowsFormsApplication3
 
         private void Add(object sender, EventArgs e)
         {
-            //panel1.BackColor = Color.Aqua;
             GraphObject r = new GraphObject();
             elements.Add(r);
             panel1.Invalidate();
+
+            //chElli = rand.Next(10);
+            //if (chElli < 5) elli = true;
+            //else elli = false;
+            //if (elli) elements.Add(new Ellipse(rand.Next(panel1.Width), rand.Next(panel1.Height)));
+            //else elements.Add(new Rectangle(rand.Next(panel1.Width), rand.Next(panel1.Height)));
+            //label.Text = String.Format("создан {0} объект", elements.Count);
+            //panel.Invalidate();
+
         }
 
         private void Delete(object sender, EventArgs e)
         {
-            //panel1.BackColor = this.BackColor;
-            elements.RemoveAt(elements.Count - 1);
-            panel1.Invalidate();
+            //elements.RemoveAt(elements.Count - 1);
+            //panel1.Invalidate();
+
+            panel1.BackColor = this.BackColor;
+            if (elements.Count > 0)
+            {
+                elements.RemoveAt(elements.Count - 1);
+                panel1.Invalidate();
+                label.Text = String.Format("Удален {0} объект", elements.Count + 1);
+            }
+            else
+            {
+                label.Text = "Удалять нечего, объектов нет";
+            }
         }
 
         private void p(object sender, PaintEventArgs e)
@@ -72,8 +91,21 @@ namespace WindowsFormsApplication3
 
         private void Clear(object sender, EventArgs e)
         {
-            elements.Clear();
+            //elements.Clear();
+            //panel1.Invalidate();
+
+            if (elements.Count > 0)
+            {
+                label.Text = String.Format("Удалено {0} объектов", elements.Count);
+                elements.Clear();
+            }
+            else
+            {
+                label.Text = "Удалять нечего, объектов нет";
+            }
             panel1.Invalidate();
+
+
         }
 
 
@@ -85,6 +117,13 @@ namespace WindowsFormsApplication3
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
 
         {
+            //chElli = rand.Next(10);
+            //if (chElli < 5) elli = true;
+            //else elli = false;
+            //if (elli) elements.Add(new Ellipse(e.X, e.Y));
+            //else elements.Add(new Rectangle(e.X, e.Y));
+            //panel1.Invalidate();
+
             try
             {
                 //
@@ -101,9 +140,32 @@ namespace WindowsFormsApplication3
             }
         }
 
+        private void panel1_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            GraphObject.MaxCoords = panel1.ClientSize;
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
         private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
         {
 
         }
+
+
+
     }
 }
